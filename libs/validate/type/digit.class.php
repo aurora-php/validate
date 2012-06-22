@@ -11,26 +11,37 @@
 
 namespace org\octris\core\validate\type {
     /**
-     * Validator for testing if a string contains a valid (existing) path.
+     * Validator for values containing only digits.
      *
-     * @octdoc      c:type/path
-     * @copyright   copyright (c) 2010-2011 by Harald Lapp
+     * @octdoc      c:type/digit
+     * @copyright   copyright (c) 2011 by Harald Lapp
      * @author      Harald Lapp <harald@octris.org>
      */
-    class path extends \org\octris\core\validate\type 
+    class digit extends \org\octris\core\validate\type
     /**/
     {
         /**
          * Validator implementation.
          *
-         * @octdoc  m:path/validate
+         * @octdoc  m:alpha/validate
          * @param   mixed       $value          Value to validate.
          * @return  bool                        Returns true if value is valid.
          */
         public function validate($value)
         /**/
         {
-            return (is_dir($value));
+            $return = (isset($this->options['min']) 
+                        ? ($value >= $this->options['min']) 
+                        : true);
+
+            $return = ($return
+                        ? (isset($this->options['max'])
+                            ? ($value <= $this->options['max'])
+                            : true)
+                        : false);
+
+            return ($return ? preg_match('/^[0-9]+$/', $value) : false);
         }
     }
 }
+

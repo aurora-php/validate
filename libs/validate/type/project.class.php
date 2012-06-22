@@ -11,26 +11,35 @@
 
 namespace org\octris\core\validate\type {
     /**
-     * Validator for testing if a string contains a valid (existing) path.
+     * Validator for octris project names. A qualified project name is:
      *
-     * @octdoc      c:type/path
-     * @copyright   copyright (c) 2010-2011 by Harald Lapp
+     * <TLD>.<COMPANY-NAME>.<MODULE-NAME>
+     *
+     * e.g.: com.clipdealer.core
+     *
+     * @octdoc      c:type/alpha
+     * @copyright   copyright (c) 2011 by Harald Lapp
      * @author      Harald Lapp <harald@octris.org>
      */
-    class path extends \org\octris\core\validate\type 
+    class project extends \org\octris\core\validate\type
     /**/
     {
         /**
          * Validator implementation.
          *
-         * @octdoc  m:path/validate
+         * @octdoc  m:project/validate
          * @param   mixed       $value          Value to validate.
          * @return  bool                        Returns true if value is valid.
          */
         public function validate($value)
         /**/
         {
-            return (is_dir($value));
+            $value .= '.';
+            
+            return !!preg_match(
+                '/^[a-z]{2,4}\.([a-z0-9]+([a-z0-9\-]*[a-z0-9]+|)\.){2}$/',
+                $value
+            );
         }
     }
 }
