@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the 'octris/core' package.
+ * This file is part of the 'octris/validate' package.
  *
  * (c) Harald Lapp <harald@octris.org>
  *
@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Core\Validate;
+namespace Octris\Validate;
 
-use \Octris\Core\Validate as validate;
+use \Octris\Validate as validate;
 
 /**
  * Validate by providing a validation schema.
  *
- * @copyright   copyright (c) 2010-2014 by Harald Lapp
+ * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Schema
@@ -334,7 +334,7 @@ class Schema
             // type validation
             $validator = $schema['type'];
 
-            if (is_scalar($validator) && class_exists($validator) && is_subclass_of($validator, '\Octris\Core\Validate\Type')) {
+            if (is_scalar($validator) && class_exists($validator) && is_subclass_of($validator, '\Octris\Validate\Type')) {
                 $validator = new $validator(
                     (isset($schema['options']) && is_array($schema['options'])
                         ? $schema['options']
@@ -342,7 +342,7 @@ class Schema
                 );
             }
 
-            if (!($validator instanceof \Octris\Core\Validate\Type)) {
+            if (!($validator instanceof \Octris\Validate\Type)) {
                 throw new \Exception("'$type' is not a validation type");
             }
 

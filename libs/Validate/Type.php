@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the 'octris/core' package.
+ * This file is part of the 'octris/validate' package.
  *
  * (c) Harald Lapp <harald@octris.org>
  *
@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Core\Validate;
+namespace Octris\Validate;
 
 /**
  * Superclass for validator types.
  *
- * @copyright   copyright (c) 2010-2014 by Harald Lapp
+ * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 abstract class Type
@@ -25,7 +25,7 @@ abstract class Type
      * @type    array
      */
     protected $options = array();
-    
+
     /**
      * Constructor.
      *
@@ -44,7 +44,7 @@ abstract class Type
      * @abstract
      */
     abstract public function validate($value);
-    
+
     /**
      * Filter values for unwanted characters before validating them.
      *

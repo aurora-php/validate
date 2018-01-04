@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the 'octris/core' package.
+ * This file is part of the 'octris/validate' package.
  *
  * (c) Harald Lapp <harald@octris.org>
  *
@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Core\Validate\Type;
+namespace Octris\Validate\Type;
 
 /**
  * Validator for bool values.
  *
- * @copyright   copyright (c) 2011-2014 by Harald Lapp
+ * @copyright   copyright (c) 2011-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Bool extends \Octris\Core\Validate\Type
+class Bool extends \Octris\Validate\Type
 {
     /**
      * Validator implementation.
