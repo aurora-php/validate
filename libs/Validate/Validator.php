@@ -12,15 +12,15 @@
 namespace Octris\Validate;
 
 /**
- * Superclass for validator types.
+ * Superclass for validators.
  *
  * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-abstract class Type
+abstract class Validator
 {
     /**
-     * Stores validation options.
+     * Stores validator options.
      *
      * @type    array
      */
@@ -60,7 +60,7 @@ abstract class Type
     }
 
     /**
-     * Return possible set options.
+     * Return validator options.
      *
      * @return  array                       Validator options.
      */

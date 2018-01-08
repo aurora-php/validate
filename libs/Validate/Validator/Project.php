@@ -9,23 +9,24 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
- * Validator for gender validation.
+ * Validator for octris project names. A qualified project name is:
  *
- * @copyright   copyright (c) 2014-2018 by Harald Lapp
+ * <vendor-name>/<package-name>
+ *
+ * e.g.: octris/core
+ *
+ * The string must match the pattern:
+ *
+ * [A-Za-z0-9][A-Za-z0-9_]*\/[A-Za-z0-9][A-Za-z0-9_]*
+ *
+ * @copyright   copyright (c) 2011-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Gender extends \Octris\Validate\Type
+class Project extends \Octris\Validate\Validator
 {
-    /**
-     * Validation pattern.
-     *
-     * @type    string
-     */
-    protected $pattern = '/^[MF]$/';
-
     /**
      * Validator implementation.
      *
@@ -34,6 +35,9 @@ class Gender extends \Octris\Validate\Type
      */
     public function validate($value)
     {
-        return preg_match($this->pattern, $value);
+        return !!preg_match(
+            '/^[A-Za-z0-9][A-Za-z0-9_]*\/[A-Za-z0-9][A-Za-z0-9_]*$/',
+            $value
+        );
     }
 }

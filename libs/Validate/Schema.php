@@ -91,7 +91,7 @@ class Schema
      */
     public function __construct(array $schema, $mode = self::T_IGNORE)
     {
-        $this->schema = (!isset($schema['default']) && isset($schema['type'])
+        $this->schema = (!isset($schema['default']) && isset($schema['validator'])
                          ? array('default' => $schema)
                          : $schema);
 
@@ -193,7 +193,7 @@ class Schema
             $data = $schema['preprocess']($data);
         }
 
-        if ($schema['type'] == validate::T_ARRAY) {
+        if ($schema['validator'] == validate::T_ARRAY) {
             // array validation
             do {
                 if (!is_array($data)) {
@@ -246,7 +246,7 @@ class Schema
                     }
                 }
             } while (false);
-        } elseif ($schema['type'] == validate::T_OBJECT) {
+        } elseif ($schema['validator'] == validate::T_OBJECT) {
             // object validation
             do {
                 if (!is_array($data)) {
@@ -308,7 +308,7 @@ class Schema
                     }
                 }
             } while (false);
-        } elseif ($schema['type'] == validate::T_CHAIN) {
+        } elseif ($schema['validator'] == validate::T_CHAIN) {
             // validation chain
             if (!isset($schema['chain'])) {
                 throw new \Exception("schema error -- no chain available");
@@ -321,7 +321,7 @@ class Schema
                     break;
                 }
             }
-        } elseif ($schema['type'] == validate::T_CALLBACK) {
+        } elseif ($schema['validator'] == validate::T_CALLBACK) {
             // validating using callback
             if (!isset($schema['callback']) || !is_callable($schema['callback'])) {
                 throw new \Exception("schema error -- no valid callback available");
@@ -331,8 +331,8 @@ class Schema
                 $this->addError($schema['invalid']);
             }
         } else {
-            // type validation
-            $validator = $schema['type'];
+            // validation using validator
+            $validator = $schema['validator'];
 
             if (is_scalar($validator) && class_exists($validator) && is_subclass_of($validator, '\Octris\Validate\Type')) {
                 $validator = new $validator(
@@ -343,7 +343,7 @@ class Schema
             }
 
             if (!($validator instanceof \Octris\Validate\Type)) {
-                throw new \Exception("'$type' is not a validation type");
+                throw new \Exception("'$validator' is not a validation type");
             }
 
             $data = $validator->preFilter($data);

@@ -9,16 +9,23 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
- * Validator for bool values.
+ * Validator for gender validation.
  *
- * @copyright   copyright (c) 2011-2018 by Harald Lapp
+ * @copyright   copyright (c) 2014-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Bool extends \Octris\Validate\Type
+class Gender extends \Octris\Validate\Validator
 {
+    /**
+     * Validation pattern.
+     *
+     * @type    string
+     */
+    protected $pattern = '/^[MF]$/';
+
     /**
      * Validator implementation.
      *
@@ -27,6 +34,6 @@ class Bool extends \Octris\Validate\Type
      */
     public function validate($value)
     {
-        return (is_bool($value) || preg_match('/^(-|\+)?(0|1)$/', $value));
+        return preg_match($this->pattern, $value);
     }
 }

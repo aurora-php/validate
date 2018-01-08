@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
- * Validator for testing if a string contains a valid (existing) file.
+ * Validator for strings containing letters and numbers as characters (a-zA-Z0-9).
  *
  * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class File extends \Octris\Validate\Type
+class Alphanum extends \Octris\Validate\Validator
 {
     /**
      * Validator implementation.
@@ -27,6 +27,6 @@ class File extends \Octris\Validate\Type
      */
     public function validate($value)
     {
-        return (is_file($value));
+        return ctype_alnum($value);
     }
 }

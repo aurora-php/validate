@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
- * Validator for strings containing only letters as characters (a-zA-Z).
+ * Validator for bool values.
  *
- * @copyright   copyright (c) 2010-2018 by Harald Lapp
+ * @copyright   copyright (c) 2011-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Alpha extends \Octris\Validate\Type
+class Bool extends \Octris\Validate\Validator
 {
     /**
      * Validator implementation.
@@ -27,6 +27,6 @@ class Alpha extends \Octris\Validate\Type
      */
     public function validate($value)
     {
-        return ctype_alpha($value);
+        return (is_bool($value) || preg_match('/^(-|\+)?(0|1)$/', $value));
     }
 }

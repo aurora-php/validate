@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
- * Validator for strings containing letters and numbers as characters (a-zA-Z0-9).
+ * Validator for testing if a string is a valid email.
  *
- * @copyright   copyright (c) 2010-2018 by Harald Lapp
+ * @copyright   copyright (c) 2014-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Alphanum extends \Octris\Validate\Type
+class Email extends \Octris\Validate\Validator
 {
     /**
      * Validator implementation.
@@ -27,6 +27,6 @@ class Alphanum extends \Octris\Validate\Type
      */
     public function validate($value)
     {
-        return ctype_alnum($value);
+        return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
 }

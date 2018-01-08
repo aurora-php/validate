@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
  * Validator for IP addresses.
@@ -17,7 +17,7 @@ namespace Octris\Validate\Type;
  * @copyright   copyright (c) 2015-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Ip extends \Octris\Validate\Type
+class Ip extends \Octris\Validate\Validator
 {
     /**
      * Filter flags.

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
- * Validator for testing if a string contains a valid (existing) path.
+ * Validator for testing if a string contains only multiline characters.
  *
- * @copyright   copyright (c) 2010-2018 by Harald Lapp
+ * @copyright   copyright (c) 2013-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Path extends \Octris\Validate\Type
+class Multiline extends \Octris\Validate\Validator
 {
     /**
      * Validator implementation.
@@ -27,6 +27,6 @@ class Path extends \Octris\Validate\Type
      */
     public function validate($value)
     {
-        return (is_dir($value));
+        return !preg_match('/[\f]/', $value);
     }
 }

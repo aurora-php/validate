@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Core\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
- * Validator for testing if a string contains only printable characters.
+ * Validator for testing if a string contains a valid (existing) file.
  *
  * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Printable extends \Octris\Core\Validate\Type
+class File extends \Octris\Validate\Validator
 {
     /**
      * Validator implementation.
@@ -27,6 +27,6 @@ class Printable extends \Octris\Core\Validate\Type
      */
     public function validate($value)
     {
-        return !preg_match('/[\f\n\r\t]/', $value);
+        return (is_file($value));
     }
 }

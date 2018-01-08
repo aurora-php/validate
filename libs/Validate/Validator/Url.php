@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
  * Validator for testing if a string is a valid URL.
@@ -17,7 +17,7 @@ namespace Octris\Validate\Type;
  * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Url extends \Octris\Validate\Type
+class Url extends \Octris\Validate\Validator
 {
     /**
      * Validation pattern.

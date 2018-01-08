@@ -9,23 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
- * Validator for octris project names. A qualified project name is:
+ * Validator for testing if a string contains a valid (existing) path.
  *
- * <vendor-name>/<package-name>
- *
- * e.g.: octris/core
- *
- * The string must match the pattern:
- *
- * [A-Za-z0-9][A-Za-z0-9_]*\/[A-Za-z0-9][A-Za-z0-9_]*
- *
- * @copyright   copyright (c) 2011-2018 by Harald Lapp
+ * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Project extends \Octris\Validate\Type
+class Path extends \Octris\Validate\Validator
 {
     /**
      * Validator implementation.
@@ -35,9 +27,6 @@ class Project extends \Octris\Validate\Type
      */
     public function validate($value)
     {
-        return !!preg_match(
-            '/^[A-Za-z0-9][A-Za-z0-9_]*\/[A-Za-z0-9][A-Za-z0-9_]*$/',
-            $value
-        );
+        return (is_dir($value));
     }
 }

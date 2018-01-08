@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Octris\Validate\Type;
+namespace Octris\Validate\Validator;
 
 /**
- * Validator for testing if a string is a valid email.
+ * Validator for testing if a string contains only printable characters.
  *
- * @copyright   copyright (c) 2014-2018 by Harald Lapp
+ * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Email extends \Octris\Validate\Type
+class Printable extends \Octris\Validate\Validator
 {
     /**
      * Validator implementation.
@@ -27,6 +27,6 @@ class Email extends \Octris\Validate\Type
      */
     public function validate($value)
     {
-        return filter_var($value, FILTER_VALIDATE_EMAIL);
+        return !preg_match('/[\f\n\r\t]/', $value);
     }
 }
