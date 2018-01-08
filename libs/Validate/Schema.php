@@ -88,8 +88,9 @@ class Schema
      *
      * @param   array       $schema     Schema to use for validation.
      * @param   int         $mode       Optional schema validation mode.
+     * @param   string      $charset    Optional charset. Defaults to "default_charset" setting in php.ini.
      */
-    public function __construct(array $schema, $mode = self::T_IGNORE)
+    public function __construct(array $schema, $mode = self::T_IGNORE, $charset = null)
     {
         $this->schema = (!isset($schema['default']) && isset($schema['validator'])
                          ? array('default' => $schema)
@@ -351,9 +352,8 @@ class Schema
             if ($data === '' && isset($schema['required'])) {
                 $this->addError($schema['required']);
             } else {
-                if (!($return = \Octris\Core\Type\Text::isUtf8($data))) {
-                    // no valid UTF-8 string, issue a notice
-                    trigger_error('not a valid UTF-8 string', E_NOTICE);
+                if (!($return = (\Octris\Validate\Validator::getInstance(['charset' => $this->charset]))->validate($data))) {
+                    $this->addError('Invalid encoding');
                 } else {
                     $return = $validator->validate($data);
                 }

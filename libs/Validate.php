@@ -49,11 +49,12 @@ class Validate
      * @param   mixed           $data               Data to validate.
      * @param   array           $schema             Validation schema.
      * @param   int             $mode               Optional validation mode.
+     * @param   string          $charset            Optional charset. Defaults to "default_charset" setting in php.ini.
      * @return  mixed                               Returns true, if valid otherwise an array with error messages.
      */
-    public static function validate($data, array $schema, $mode = \Octris\Validate\Schema::T_STRICT)
+    public static function validate($data, array $schema, $mode = \Octris\Validate\Schema::T_STRICT, $charset = null)
     {
-        $instance = new \Octris\Validate\Schema($schema, $mode);
+        $instance = new \Octris\Validate\Schema($schema, $mode, $charset);
         $is_valid = $instance->validate($data);
 
         return ($is_valid === true
