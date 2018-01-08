@@ -44,17 +44,17 @@ class Validate
     }
 
     /**
-     * Test a value if it validates to the specified schema.
+     * Test data if it validates to the specified schema.
      *
-     * @param   mixed           $value              Value to test.
+     * @param   mixed           $data               Data to validate.
      * @param   array           $schema             Validation schema.
      * @param   int             $mode               Optional validation mode.
      * @return  mixed                               Returns true, if valid otherwise an array with error messages.
      */
-    public static function validate($value, array $schema, $mode = \Octris\Validate\Schema::T_STRICT)
+    public static function validate($data, array $schema, $mode = \Octris\Validate\Schema::T_STRICT)
     {
         $instance = new \Octris\Validate\Schema($schema, $mode);
-        $is_valid = $instance->validate($value);
+        $is_valid = $instance->validate($data);
 
         return ($is_valid === true
                 ? $is_valid
