@@ -11,6 +11,8 @@
 
 namespace Octris;
 
+use \Octris\Validate\Schema;
+
 /**
  * Validation base class.
  *
@@ -52,7 +54,7 @@ class Validate
      * @param   string          $charset            Optional charset. Defaults to "default_charset" setting in php.ini.
      * @return  mixed                               Returns true, if valid otherwise an array with error messages.
      */
-    public static function validate($data, array $schema, $mode = \Octris\Validate\Schema::T_STRICT, $charset = null)
+    public static function validate($data, array $schema, $mode = Schema::SCHEMA_STRICT | Schema::VALIDATE_CHARSET, $charset = null)
     {
         $instance = new \Octris\Validate\Schema($schema, $mode, $charset);
         $is_valid = $instance->validate($data);
