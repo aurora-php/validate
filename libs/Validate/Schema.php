@@ -41,9 +41,16 @@ class Schema
      * fields before it returns. With 'fail early' the validator will fail and
      * return on the first invalid field.
      *
-     * @type    int
+     * @type    bool
      */
-    protected $fail = false;
+    protected $fail_early = false;
+
+    /**
+     * Whether to validate all values agains the configured charset.
+     *
+     * @type    bool
+     */
+    protected $validate_charset = true;
 
     /**
      * Collected errors.
@@ -69,19 +76,29 @@ class Schema
     /**
      * Available validation modes:
      *
-     * - T_STRICT:  fields not in schema will raise a validation error (default)
-     * - T_CLEANUP: fields not in schema will be removed
-     * - T_IGNORE:  fields not in schema will be silently ignored
+     * - SCHEMA_STRICT:  fields not in schema will raise a validation error (default)
+     * - SCHEMA_CLEANUP: fields not in schema will be removed
+     * - SCHEMA_IGNORE:  fields not in schema will be silently ignored
      */
-    const T_STRICT  = 1;
-    const T_CLEANUP = 2;
-    const T_IGNORE  = 3;
+    const SCHEMA_STRICT = 1;
+    const SCHEMA_CLEANUP = 2;
+    const SCHEMA_IGNORE = 3;
 
     /**
      * Fail modes.
      */
-    const T_FAIL_LATE  = 0;
-    const T_FAIL_EARLY = 8;
+    const FAIL_LATE = 0;
+    const FAIL_EARLY = 8;
+
+    /**
+     * Validate characterset
+     */
+    const VALIDATE_CHARSET = 4;
+
+    /**
+     * Default validation mode.
+     */
+    const DEFAULT_MODE = self::SCHEMA_STRICT | self::VALIDATE_CHARSET;
 
     /**
      * Constructor.
@@ -90,18 +107,17 @@ class Schema
      * @param   int         $mode       Optional schema validation mode.
      * @param   string      $charset    Optional charset. Defaults to "default_charset" setting in php.ini.
      */
-    public function __construct(array $schema, $mode = self::T_IGNORE, $charset = null)
+    public function __construct(array $schema, $mode = self::SCHEMA_STRICT | self::VALIDATE_CHARSET, $charset = null)
     {
         $this->schema = (!isset($schema['default']) && isset($schema['validator'])
                          ? array('default' => $schema)
                          : $schema);
 
-        $mode = $mode & 7;
+        $mode = $mode & 3;
 
-        $this->mode = ($mode == 0
-                        ? self::T_STRICT
-                        : $mode);
-        $this->fail = ($mode == ($mode & 8));
+        $this->mode = ($mode & 3 ?: self::SCHEMA_STRICT);
+        $this->validate_charset = (bool)(1 & ($mode >> 2));
+        $this->fail_early = (bool)(1 & ($mode >> 3));
     }
 
     /**
@@ -242,7 +258,7 @@ class Schema
                         $ref
                     );
 
-                    if (!$return && $this->fail) {
+                    if (!$return && $this->fail_early) {
                         break;
                     }
                 }
@@ -269,7 +285,7 @@ class Schema
                 $cnt2 = count($data);
                 $cnt3 = count(array_intersect_key($schema, $data));
 
-                if (!($return = ($cnt1 >= $cnt3 || ($cnt1 < $cnt2 && $this->mode != self::T_STRICT)))) {
+                if (!($return = ($cnt1 >= $cnt3 || ($cnt1 < $cnt2 && $this->mode != self::SCHEMA_STRICT)))) {
                     if (isset($schema['invalid'])) {
                         $this->addError($schema['invalid']);
                     }
@@ -284,7 +300,7 @@ class Schema
 
                             $return = false;
 
-                            if ($this->fail) {
+                            if ($this->fail_early) {
                                 break(2);
                             }
                         }
@@ -295,7 +311,7 @@ class Schema
                 foreach ($data as $k => &$v) {
                     if (!isset($schema[$k])) {
                         // unknown field
-                        if ($this->mode == self::T_CLEANUP) {
+                        if ($this->mode == self::SCHEMA_CLEANUP) {
                             unset($data[$k]);
                         }
 
@@ -304,7 +320,7 @@ class Schema
 
                     list($return, $data[$k]) = $this->_validator($data[$k], $schema[$k], $level, $max_depth, $ref);
 
-                    if (!$return && $this->fail) {
+                    if (!$return && $this->fail_early) {
                         break(2);
                     }
                 }
@@ -318,7 +334,7 @@ class Schema
             foreach ($schema['chain'] as $item) {
                 list($return, $data) = $this->_validator($data, $item, $level, $max_depth, $ref);
 
-                if (!$return && $this->fail) {
+                if (!$return && $this->fail_early) {
                     break;
                 }
             }
@@ -352,10 +368,15 @@ class Schema
             if ($data === '' && isset($schema['required'])) {
                 $this->addError($schema['required']);
             } else {
-                if (!($return = (\Octris\Validate\Validator::getInstance(['charset' => $this->charset]))->validate($data))) {
-                    $this->addError('Invalid encoding');
-                } else {
+                do {
+                    if ($this->validate_charset) {
+                        
+                    }
+                } while(false);
+                if ($return = (!$this->validate_charset || (\Octris\Validate\Validator\Encoding::getInstance(['charset' => $this->charset]))->validate($data))) {
                     $return = $validator->validate($data);
+                } else {
+                    $this->addError('Invalid encoding');
                 }
 
                 if (!$return && isset($schema['invalid'])) {
