@@ -368,11 +368,6 @@ class Schema
             if ($data === '' && isset($schema['required'])) {
                 $this->addError($schema['required']);
             } else {
-                do {
-                    if ($this->validate_charset) {
-                        
-                    }
-                } while(false);
                 if ($return = (!$this->validate_charset || (\Octris\Validate\Validator\Encoding::getInstance(['charset' => $this->charset]))->validate($data))) {
                     $return = $validator->validate($data);
                 } else {
