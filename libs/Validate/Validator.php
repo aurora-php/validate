@@ -31,7 +31,7 @@ abstract class Validator
      *
      * @param   array       $options        Optional options for validator.
      */
-    public function __construct(array $options =[])
+    public function __construct(array $options = [])
     {
         $this->options = $options;
     }

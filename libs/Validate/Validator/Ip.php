@@ -34,7 +34,7 @@ class Ip extends \Octris\Validate\Validator
      *
      * @param   array       $options        Optional options for validator.
      */
-    public function __construct(array $options =[])
+    public function __construct(array $options = [])
     {
         if (!isset($options['flags'])) {
             $options['flags'] = self::IPV4 | self::IPV6 | self::PRIVATE_RANGE | self::RESERVED_RANGE;
