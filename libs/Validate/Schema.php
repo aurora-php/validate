@@ -26,7 +26,7 @@ class Schema
      *
      * @type    array
      */
-    protected $schema = array();
+    protected $schema = [];
 
     /**
      * Validation mode.
@@ -57,14 +57,14 @@ class Schema
      *
      * @type    array
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * Sanitzed data.
      *
      * @type    array
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Whether validation succeeded.
@@ -110,7 +110,7 @@ class Schema
     public function __construct(array $schema, $mode = self::SCHEMA_STRICT | self::VALIDATE_CHARSET, $charset = null)
     {
         $this->schema = (!isset($schema['default']) && isset($schema['validator'])
-                         ? array('default' => $schema)
+                         ? ['default' => $schema]
                          : $schema);
 
         $mode = $mode & 3;
@@ -127,10 +127,10 @@ class Schema
      */
     public function __debugInfo()
     {
-        return array(
+        return [
             'schema' => $this->schema,
             'data'   => $this->data
-        );
+        ];
     }
 
     /**
@@ -183,7 +183,7 @@ class Schema
      * @param   array       $ref        Stored references.
      * @return  bool                    Returns true if validation succeeded.
      */
-    protected function _validator($data, array $schema, $level = 0, $max_depth = 0, array &$ref = array())
+    protected function _validator($data, array $schema, $level = 0, $max_depth = 0, array &$ref = [])
     {
         if (!($return = ($max_depth == 0 || $level <= $max_depth))) {
             // max nested depth is reached
@@ -355,7 +355,7 @@ class Schema
                 $validator = new $validator(
                     (isset($schema['options']) && is_array($schema['options'])
                         ? $schema['options']
-                        : array())
+                        : [])
                 );
             }
 
@@ -391,7 +391,7 @@ class Schema
             $schema['onSuccess']();
         }
 
-        return array($return, $data);
+        return [$return, $data];
     }
 
     /**
@@ -406,7 +406,7 @@ class Schema
             throw new \Exception('no default schema specified!');
         }
 
-        $this->errors = array();
+        $this->errors = [];
 
         list($return, $data) = $this->_validator(
             $data,

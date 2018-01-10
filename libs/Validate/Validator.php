@@ -24,14 +24,14 @@ abstract class Validator
      *
      * @type    array
      */
-    protected $options = array();
+    protected $options =[];
 
     /**
      * Constructor.
      *
      * @param   array       $options        Optional options for validator.
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options =[])
     {
         $this->options = $options;
     }

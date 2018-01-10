@@ -31,10 +31,10 @@ class Url extends \Octris\Validate\Validator
      *
      * @param   array       $options        Optional options for validator.
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options =[])
     {
         if (!isset($options['schemes']) || !is_array($options['schemes'])) {
-            $options['schemes'] = array('http', 'https');
+            $options['schemes'] = ['http', 'https'];
         }
 
         if (!isset($options['default_scheme']) || !is_string($options['default_scheme'])) {
