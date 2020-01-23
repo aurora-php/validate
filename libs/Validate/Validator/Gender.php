@@ -24,7 +24,7 @@ class Gender extends \Octris\Validate\Validator
      *
      * @type    string
      */
-    protected $pattern = '/^[MF]$/';
+    protected $pattern = '/^[MFD]$/';
 
     /**
      * Validator implementation.
