@@ -14,7 +14,7 @@ namespace Octris\Validate\Validator;
 /**
  * Validator for gender validation.
  *
- * @copyright   copyright (c) 2014-2018 by Harald Lapp
+ * @copyright   copyright (c) 2014-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Gender extends \Octris\Validate\Validator
@@ -24,7 +24,7 @@ class Gender extends \Octris\Validate\Validator
      *
      * @type    string
      */
-    protected $pattern = '/^[MFD]$/';
+    protected $pattern = '/^[MFD]$/i';
 
     /**
      * Validator implementation.
