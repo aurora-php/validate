@@ -17,7 +17,7 @@ namespace Octris\Validate\Validator;
  * @copyright   copyright (c) 2011-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Digit extends \Octris\Validate\Validator
+class Digit extends \Octris\Validate\AbstractValidator
 {
     /**
      * Validation pattern.

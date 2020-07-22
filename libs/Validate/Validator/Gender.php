@@ -17,7 +17,7 @@ namespace Octris\Validate\Validator;
  * @copyright   copyright (c) 2014-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Gender extends \Octris\Validate\Validator
+class Gender extends \Octris\Validate\AbstractValidator
 {
     /**
      * Validation pattern.

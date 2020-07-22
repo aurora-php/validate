@@ -17,7 +17,7 @@ namespace Octris\Validate\Validator;
  * @copyright   copyright (c) 2015-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Ip extends \Octris\Validate\Validator
+class Ip extends \Octris\Validate\AbstractValidator
 {
     /**
      * Filter flags.

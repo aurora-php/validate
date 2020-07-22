@@ -25,7 +25,7 @@ namespace Octris\Validate\Validator;
  * @copyright   copyright (c) 2011-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Project extends \Octris\Validate\Validator
+class Project extends \Octris\Validate\AbstractValidator
 {
     /**
      * Validator implementation.

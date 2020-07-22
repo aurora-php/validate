@@ -17,7 +17,7 @@ namespace Octris\Validate;
  * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-abstract class Validator
+abstract class AbstractValidator
 {
     /**
      * Stores validator options.

@@ -17,7 +17,7 @@ namespace Octris\Validate\Validator;
  * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Url extends \Octris\Validate\Validator
+class Url extends \Octris\Validate\AbstractValidator
 {
     /**
      * Validation pattern.

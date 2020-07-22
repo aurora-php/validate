@@ -17,7 +17,7 @@ namespace Octris\Validate\Validator;
  * @copyright   copyright (c) 2010-2018 by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Encoding extends \Octris\Validate\Validator
+class Encoding extends \Octris\Validate\AbstractValidator
 {
     /**
      * The character encoding to use for validation can be either specified
