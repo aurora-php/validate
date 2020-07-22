@@ -107,7 +107,7 @@ class Schema
      * @param   int         $mode       Optional schema validation mode.
      * @param   string      $charset    Optional charset. Defaults to "default_charset" setting in php.ini.
      */
-    public function __construct(array $schema, $mode = self::SCHEMA_STRICT | self::VALIDATE_CHARSET, $charset = null)
+    public function __construct(array $schema, int $mode = self::SCHEMA_STRICT | self::VALIDATE_CHARSET, ?string $charset = null)
     {
         $this->schema = (!isset($schema['default']) && isset($schema['validator'])
                          ? ['default' => $schema]
