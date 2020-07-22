@@ -96,6 +96,18 @@ class Schema
     public const VALIDATE_CHARSET = 4;
 
     /**
+     * Schema structure types.
+     */
+    public const OBJECT = 1;
+    public const ARRAY = 2;
+
+    /**
+     * Validation types which are directly implemented in schema validator.
+     */
+    public const CALLBACK = 3;
+    public const CHAIN = 4;
+
+    /**
      * Default validation mode.
      */
     public const DEFAULT_MODE = self::SCHEMA_STRICT | self::VALIDATE_CHARSET;
@@ -210,7 +222,7 @@ class Schema
             $data = $schema['preprocess']($data);
         }
 
-        if ($schema['validator'] == validate::T_ARRAY) {
+        if ($schema['validator'] == self::ARRAY) {
             // array validation
             do {
                 if (!is_array($data)) {
@@ -263,7 +275,7 @@ class Schema
                     }
                 }
             } while (false);
-        } elseif ($schema['validator'] == validate::T_OBJECT) {
+        } elseif ($schema['validator'] == self::OBJECT) {
             // object validation
             do {
                 if (!is_array($data)) {
@@ -325,7 +337,7 @@ class Schema
                     }
                 }
             } while (false);
-        } elseif ($schema['validator'] == validate::T_CHAIN) {
+        } elseif ($schema['validator'] == self::CHAIN) {
             // validation chain
             if (!isset($schema['chain'])) {
                 throw new \Exception("schema error -- no chain available");
@@ -338,7 +350,7 @@ class Schema
                     break;
                 }
             }
-        } elseif ($schema['validator'] == validate::T_CALLBACK) {
+        } elseif ($schema['validator'] == self::CALLBACK) {
             // validating using callback
             if (!isset($schema['callback']) || !is_callable($schema['callback'])) {
                 throw new \Exception("schema error -- no valid callback available");
