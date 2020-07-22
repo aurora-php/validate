@@ -17,7 +17,6 @@
     },
 
     "autoload":     {
-        "classmap": [ "libs/Validate.php" ],
         "psr-4":        {
             "Octris\\Validate\\": "libs/Validate/"
         }
