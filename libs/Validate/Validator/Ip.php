@@ -14,7 +14,7 @@ namespace Octris\Validate\Validator;
 /**
  * Validator for IP addresses.
  *
- * @copyright   copyright (c) 2015-2018 by Harald Lapp
+ * @copyright   copyright (c) 2015-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Ip extends \Octris\Validate\AbstractValidator

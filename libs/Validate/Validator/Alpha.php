@@ -14,7 +14,7 @@ namespace Octris\Validate\Validator;
 /**
  * Validator for strings containing only letters as characters (a-zA-Z).
  *
- * @copyright   copyright (c) 2010-2018 by Harald Lapp
+ * @copyright   copyright (c) 2010-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Alpha extends \Octris\Validate\AbstractValidator

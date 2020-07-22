@@ -14,7 +14,7 @@ namespace Octris\Validate\Validator;
 /**
  * Validator for bool values.
  *
- * @copyright   copyright (c) 2011-2018 by Harald Lapp
+ * @copyright   copyright (c) 2011-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Bool extends \Octris\Validate\AbstractValidator

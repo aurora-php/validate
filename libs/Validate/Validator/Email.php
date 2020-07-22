@@ -14,7 +14,7 @@ namespace Octris\Validate\Validator;
 /**
  * Validator for testing if a string is a valid email.
  *
- * @copyright   copyright (c) 2014-2018 by Harald Lapp
+ * @copyright   copyright (c) 2014-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Email extends \Octris\Validate\AbstractValidator

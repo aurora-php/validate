@@ -14,7 +14,7 @@ namespace Octris\Validate\Validator;
 /**
  * Validator for strings containing letters and numbers as characters (a-zA-Z0-9).
  *
- * @copyright   copyright (c) 2010-2018 by Harald Lapp
+ * @copyright   copyright (c) 2010-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Alphanum extends \Octris\Validate\AbstractValidator

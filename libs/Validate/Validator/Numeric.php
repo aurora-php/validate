@@ -14,7 +14,7 @@ namespace Octris\Validate\Validator;
 /**
  * Validator for values containing numeric value.
  *
- * @copyright   copyright (c) 2013-2018 by Harald Lapp
+ * @copyright   copyright (c) 2013-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Numeric extends \Octris\Validate\Validator\Digit

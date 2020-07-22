@@ -14,7 +14,7 @@ namespace Octris\Validate\Validator;
 /**
  * Validator for testing if a string contains only multiline characters.
  *
- * @copyright   copyright (c) 2013-2018 by Harald Lapp
+ * @copyright   copyright (c) 2013-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Multiline extends \Octris\Validate\AbstractValidator

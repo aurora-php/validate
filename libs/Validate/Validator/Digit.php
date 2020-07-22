@@ -14,7 +14,7 @@ namespace Octris\Validate\Validator;
 /**
  * Validator for values containing only digits.
  *
- * @copyright   copyright (c) 2011-2018 by Harald Lapp
+ * @copyright   copyright (c) 2011-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Digit extends \Octris\Validate\AbstractValidator

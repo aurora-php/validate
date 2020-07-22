@@ -22,7 +22,7 @@ namespace Octris\Validate\Validator;
  *
  * [A-Za-z0-9][A-Za-z0-9_]*\/[A-Za-z0-9][A-Za-z0-9_]*
  *
- * @copyright   copyright (c) 2011-2018 by Harald Lapp
+ * @copyright   copyright (c) 2011-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Project extends \Octris\Validate\AbstractValidator
