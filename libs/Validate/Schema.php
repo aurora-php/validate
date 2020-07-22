@@ -16,7 +16,7 @@ use \Octris\Validate as validate;
 /**
  * Validate by providing a validation schema.
  *
- * @copyright   copyright (c) 2010-2018 by Harald Lapp
+ * @copyright   copyright (c) 2010-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
 class Schema
@@ -46,7 +46,7 @@ class Schema
     protected $fail_early = false;
 
     /**
-     * Whether to validate all values agains the configured charset.
+     * Whether to validate all values against the configured charset.
      *
      * @type    bool
      */
