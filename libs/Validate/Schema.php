@@ -80,25 +80,25 @@ class Schema
      * - SCHEMA_CLEANUP: fields not in schema will be removed
      * - SCHEMA_IGNORE:  fields not in schema will be silently ignored
      */
-    const SCHEMA_STRICT = 1;
-    const SCHEMA_CLEANUP = 2;
-    const SCHEMA_IGNORE = 3;
+    public const SCHEMA_STRICT = 1;
+    public const SCHEMA_CLEANUP = 2;
+    public const SCHEMA_IGNORE = 3;
 
     /**
      * Fail modes.
      */
-    const FAIL_LATE = 0;
-    const FAIL_EARLY = 8;
+    public const FAIL_LATE = 0;
+    public const FAIL_EARLY = 8;
 
     /**
      * Validate characterset
      */
-    const VALIDATE_CHARSET = 4;
+    public const VALIDATE_CHARSET = 4;
 
     /**
      * Default validation mode.
      */
-    const DEFAULT_MODE = self::SCHEMA_STRICT | self::VALIDATE_CHARSET;
+    public const DEFAULT_MODE = self::SCHEMA_STRICT | self::VALIDATE_CHARSET;
 
     /**
      * Constructor.
