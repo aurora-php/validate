@@ -248,7 +248,7 @@ class Schema
                 }
 
                 for ($i = 0; $i < $cnt; ++$i) {
-                    list($return, $data[$i]) = $this->_validator(
+                    [$return, $data[$i]] = $this->_validator(
                         $data[$i],
                         $subschema,
                         $level + 1,
@@ -318,7 +318,7 @@ class Schema
                         continue;
                     }
 
-                    list($return, $data[$k]) = $this->_validator($data[$k], $schema[$k], $level, $max_depth, $ref);
+                    [$return, $data[$k]] = $this->_validator($data[$k], $schema[$k], $level, $max_depth, $ref);
 
                     if (!$return && $this->fail_early) {
                         break(2);
@@ -332,7 +332,7 @@ class Schema
             }
 
             foreach ($schema['chain'] as $item) {
-                list($return, $data) = $this->_validator($data, $item, $level, $max_depth, $ref);
+                [$return, $data] = $this->_validator($data, $item, $level, $max_depth, $ref);
 
                 if (!$return && $this->fail_early) {
                     break;
@@ -403,7 +403,7 @@ class Schema
 
         $this->errors = [];
 
-        list($return, $data) = $this->_validator(
+        [$return, $data] = $this->_validator(
             $data,
             $this->schema['default']
         );
