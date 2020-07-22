@@ -26,14 +26,14 @@ class Schema
      *
      * @type    array
      */
-    protected $schema = [];
+    protected array $schema = [];
 
     /**
      * Validation mode.
      *
      * @type    int
      */
-    protected $mode;
+    protected int $mode;
 
     /**
      * Fail setting. Whether to fail late or early on validation. Late failing
@@ -43,35 +43,35 @@ class Schema
      *
      * @type    bool
      */
-    protected $fail_early = false;
+    protected bool $fail_early = false;
 
     /**
      * Whether to validate all values against the configured charset.
      *
      * @type    bool
      */
-    protected $validate_charset = true;
+    protected bool $validate_charset = true;
 
     /**
      * Collected errors.
      *
      * @type    array
      */
-    protected $errors = [];
+    protected array $errors = [];
 
     /**
      * Sanitzed data.
      *
      * @type    array
      */
-    protected $data = [];
+    protected array $data = [];
 
     /**
      * Whether validation succeeded.
      *
      * @type    bool
      */
-    protected $is_valid = false;
+    protected bool $is_valid = false;
 
     /**
      * Available validation modes:
@@ -105,9 +105,9 @@ class Schema
      *
      * @param   array       $schema     Schema to use for validation.
      * @param   int         $mode       Optional schema validation mode.
-     * @param   string      $charset    Optional charset. Defaults to "default_charset" setting in php.ini.
+     * @param   string|null $charset    Optional charset. Defaults to "default_charset" setting in php.ini.
      */
-    public function __construct(array $schema, int $mode = self::SCHEMA_STRICT | self::VALIDATE_CHARSET, ?string $charset = null)
+    public function __construct(array $schema, int $mode = self::DEFAULT_MODE, ?string $charset = null)
     {
         $this->schema = (!isset($schema['default']) && isset($schema['validator'])
                          ? ['default' => $schema]
@@ -125,7 +125,7 @@ class Schema
      *
      * @return  array                   Relevant class instance data.
      */
-    public function __debugInfo()
+    public function __debugInfo(): array
     {
         return [
             'schema' => $this->schema,
@@ -138,7 +138,7 @@ class Schema
      *
      * @param   string      $msg        Error message to add.
      */
-    public function addError($msg)
+    public function addError(string $msg): void
     {
         $this->errors[] = $msg;
     }
@@ -148,7 +148,7 @@ class Schema
      *
      * @return  array                   Error messages.
      */
-    public function getErrors()
+    public function getErrors(): array
     {
         return $this->errors;
     }
@@ -158,7 +158,7 @@ class Schema
      *
      * @return  array                   Data.
      */
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
@@ -168,7 +168,7 @@ class Schema
      *
      * @return  bool                    Returns true, if validation succeeded.
      */
-    public function isValid()
+    public function isValid(): bool
     {
         return $this->is_valid;
     }
@@ -183,7 +183,7 @@ class Schema
      * @param   array       $ref        Stored references.
      * @return  bool                    Returns true if validation succeeded.
      */
-    protected function _validator($data, array $schema, $level = 0, $max_depth = 0, array &$ref = [])
+    protected function _validator(mixed $data, array $schema, int $level = 0, int $max_depth = 0, array &$ref = [])
     {
         if (!($return = ($max_depth == 0 || $level <= $max_depth))) {
             // max nested depth is reached
@@ -395,7 +395,7 @@ class Schema
      * @param   mixed           $data               Data to validate.
      * @return  bool                                Returns true if value is valid compared to the schema configured in the validator instance.
      */
-    public function validate($data)
+    public function validate(mixed $data): bool
     {
         if (!isset($this->schema['default'])) {
             throw new \Exception('no default schema specified!');
