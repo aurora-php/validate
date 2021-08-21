@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the 'octris/validate' package.
  *
@@ -12,7 +14,7 @@
 namespace Octris\Validate\Validator;
 
 /**
- * Validator for octris project names. A qualified project name is:
+ * Validator for project names. A qualified project name is:
  *
  * <vendor-name>/<package-name>
  *
@@ -33,7 +35,7 @@ class Project extends \Octris\Validate\AbstractValidator
      * @param   mixed       $value          Value to validate.
      * @return  bool                        Returns true if value is valid.
      */
-    public function validate($value)
+    public function validate(mixed $value): bool
     {
         return !!preg_match(
             '/^[A-Za-z0-9][A-Za-z0-9_]*\/[A-Za-z0-9][A-Za-z0-9_]*$/',

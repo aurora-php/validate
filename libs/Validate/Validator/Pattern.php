@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the 'octris/validate' package.
  *
@@ -27,7 +29,7 @@ class Pattern extends \Octris\Validate\AbstractValidator
     public function __construct(array $options)
     {
         if (!isset($options['pattern'])) {
-            throw new \Exception('no pattern provided');
+            throw new \InvalidArgumentException('no pattern provided');
         }
 
         parent::__construct($options);
@@ -39,7 +41,7 @@ class Pattern extends \Octris\Validate\AbstractValidator
      * @param   mixed       $value          Value to validate.
      * @return  bool                        Returns true if value is valid.
      */
-    public function validate($value)
+    public function validate(mixed $value): bool
     {
         return preg_match($this->options['pattern'], $value);
     }

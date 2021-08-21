@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the 'octris/validate' package.
  *
@@ -17,7 +19,7 @@ namespace Octris\Validate\Validator;
  * @copyright   copyright (c) 2011-present by Harald Lapp
  * @author      Harald Lapp <harald@octris.org>
  */
-class Bool extends \Octris\Validate\AbstractValidator
+class Boolean extends \Octris\Validate\AbstractValidator
 {
     /**
      * Validator implementation.
@@ -25,7 +27,7 @@ class Bool extends \Octris\Validate\AbstractValidator
      * @param   mixed       $value          Value to validate.
      * @return  bool                        Returns true if value is valid.
      */
-    public function validate($value)
+    public function validate(mixed $value): bool
     {
         return (is_bool($value) || preg_match('/^(-|\+)?(0|1)$/', $value));
     }

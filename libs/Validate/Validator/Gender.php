@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the 'octris/validate' package.
  *
@@ -32,7 +34,7 @@ class Gender extends \Octris\Validate\AbstractValidator
      * @param   mixed       $value          Value to validate.
      * @return  bool                        Returns true if value is valid.
      */
-    public function validate($value)
+    public function validate(mixed $value): bool
     {
         return preg_match($this->pattern, $value);
     }

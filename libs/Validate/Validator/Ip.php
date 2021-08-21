@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the 'octris/validate' package.
  *
@@ -40,7 +42,7 @@ class Ip extends \Octris\Validate\AbstractValidator
             $options['flags'] = self::IPV4 | self::IPV6 | self::PRIVATE_RANGE | self::RESERVED_RANGE;
         }
 
-        $this->options = $options;
+        parent::__contruct($options);
     }
 
     /**
@@ -49,7 +51,7 @@ class Ip extends \Octris\Validate\AbstractValidator
      * @param   mixed       $value          Value to validate.
      * @return  bool                        Returns true if value is valid.
      */
-    public function validate($value)
+    public function validate(mixed $value): bool
     {
         return filter_var($value, FILTER_VALIDATE_IP, $this->options['flags']);
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the 'octris/validate' package.
  *
@@ -49,7 +51,7 @@ class Url extends \Octris\Validate\AbstractValidator
      *
      * @param   string      $value      The provided URL.
      */
-    public function preFilter($value)
+    public function preFilter(mixed $value): mixed
     {
         $value = parent::preFilter($value);
 
@@ -66,7 +68,7 @@ class Url extends \Octris\Validate\AbstractValidator
      * @param   mixed       $value          Value to validate.
      * @return  bool                        Returns true if value is valid.
      */
-    public function validate($value)
+    public function validate(mixed $value): bool
     {
         $pattern = sprintf(
             $this->pattern,

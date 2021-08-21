@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the 'octris/validate' package.
  *
@@ -24,7 +26,7 @@ abstract class AbstractValidator
      *
      * @type    array
      */
-    protected $options =[];
+    protected array $options = [];
 
     /**
      * Constructor.
@@ -43,7 +45,7 @@ abstract class AbstractValidator
      * @return  bool                        Returns true if value is valid.
      * @abstract
      */
-    abstract public function validate($value);
+    abstract public function validate(mixed $value): bool;
 
     /**
      * Filter values for unwanted characters before validating them.
@@ -51,7 +53,7 @@ abstract class AbstractValidator
      * @param   mixed       $value          Value to filter.
      * @return  mixed                       Filtered value.
      */
-    public function preFilter($value)
+    public function preFilter(mixed $value): mixed
     {
         // replace nullbytes
         $value = str_replace("\0", '', $value);
@@ -64,7 +66,7 @@ abstract class AbstractValidator
      *
      * @return  array                       Validator options.
      */
-    protected function getOptions()
+    protected function getOptions(): array
     {
         return $this->options;
     }
